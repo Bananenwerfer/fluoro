@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fluoro"
+dynamic = ["version"]
+description = "Draw regions of interest on white-light/fluorescence image pairs and measure fluorescence intensity"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+dependencies = ["numpy", "scipy", "pillow", "PySide6-Essentials>=6.6"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-qt"]
+
+[project.scripts]
+fluoro = "fluoro.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = {attr = "fluoro.__version__"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+qt_api = "pyside6"
